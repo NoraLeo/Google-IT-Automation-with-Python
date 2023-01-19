@@ -1,0 +1,22 @@
+#!/user/bin/env python3
+
+import os
+from multiprocessing import Pool
+import subprocess
+
+#defining the source and destination
+src = "{}/data/prod".format(os.getenv("HOME"))
+dest = "{}/data/prod_backup".format(os.getenv("HOME"))
+
+defining the function
+def run(file):
+    subprocess.call(["rsync", "-arq", src, dest])
+filenames = []
+for root, _dir, files in os.walk(src):
+    for file in files:
+        filenames.append(file)
+
+p = Pool(len(filenames))
+p.map(run, filenames)
+       
+    
