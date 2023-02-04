@@ -4,7 +4,7 @@ import os
 import requests
 
 #listing all the .txt files
-source = "supplier-data/descriptions/"
+source = "{}/supplier-data/descriptions/".format(os.getenv("HOME"))
 file_names = os.listdir(source)
 
 
